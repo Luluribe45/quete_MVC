@@ -1,0 +1,16 @@
+{
+    "name": "varloteaux/quete_simple_mvc-quete1",
+    "description": "quete simple mvc",
+    "authors": [
+        {
+            "name": "Lucile varloteaux",
+            "email": "varloteaux.lucile@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}

@@ -1,4 +1,0 @@
-<?php
-define("DSN", "mysql:host=localhost;dblulu=simplemvc");
-define("USER", "lulu");
-define("PASS", "LuGr!be1991");
