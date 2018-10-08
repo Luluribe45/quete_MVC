@@ -1,5 +1,5 @@
 <?php
-
+// app/dispatcher.php
 require_once __DIR__ . '/routing.php';
 $routesCollection = function (FastRoute\RouteCollector $r) use ($routes) {
     foreach ($routes as $controller => $actions) {
