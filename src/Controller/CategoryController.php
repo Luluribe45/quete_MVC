@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-// src/Controller/ItemController.php
+// src/Controller/CategoryController.php
 use Model\CategoryManager;
 
 class CategoryController
@@ -11,8 +11,8 @@ class CategoryController
     /**
      * @param $categoryManager
      */
-    public function Index($categoryManager){
-        $catgoryManager = new CategoryManager();
+    public function Index(){
+        $categoryManager = new CategoryManager();
         $categories = $categoryManager->selectAllCategories();
         require __DIR__ . '/../View/category.php';
     }

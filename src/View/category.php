@@ -9,7 +9,7 @@
             <li><?= $category['title'] ?></li>
         <?php endforeach ?>
     </ul>
-    <a href='showCategory.php?route=categories'></a>
+    <a href='showCategory.php?route=category'></a>
 </section>
 </body>
 </html>
