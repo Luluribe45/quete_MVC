@@ -1,10 +1,8 @@
 <?php
 namespace Model;
 
-require __DIR__ . '/../../app/db.php';
 class ItemManager
 {
-// récupération de tous les items
     public function selectAllItems(): array
     {
         $pdo = new \PDO(DSN, USER, PASS);
@@ -12,6 +10,7 @@ class ItemManager
         $res = $pdo->query($query);
         return $res->fetchAll();
     }
+
     public function selectOneItem(int $id) : array
     {
         $pdo = new \PDO(DSN, USER, PASS);
@@ -22,6 +21,4 @@ class ItemManager
         // contrairement à fetchAll(), fetch() ne renvoie qu'un seul résultat
         return $statement->fetch();
     }
-
-
 }

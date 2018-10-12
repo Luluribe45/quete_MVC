@@ -1,7 +1,5 @@
 <?php
-
 namespace Model;
-require __DIR__ . '/../../app/db.php';
 
 class CategoryManager
 {
