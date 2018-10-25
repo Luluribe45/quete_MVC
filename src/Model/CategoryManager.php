@@ -1,24 +1,61 @@
 <?php
 namespace Model;
 
-class CategoryManager
+/**
+ * Class CategoryManager
+ * @package Model
+ */
+class CategoryManager extends AbstractManager
 {
-    public function selectAllCategories(): array
+    /**
+     *
+     */
+    const TABLE = 'category';
+
+    /**
+     * CategoryManager constructor.
+     */
+    public function __construct()
     {
-        $pdo = new \PDO(DSN, USER, PASS);
-        $query = "SELECT * FROM category";
-        $res = $pdo->query($query);
-        return $res->fetchAll();
+        parent::__construct(self::TABLE);
     }
 
-    public function selectOneCategory(int $id) : array
+
+    /**
+     * @param Category $category
+     * @return int
+     */
+    public function insert(Category $category): int
     {
-        $pdo = new \PDO(DSN, USER, PASS);
-        $query = "SELECT * FROM category WHERE id = :id";
-        $statement = $pdo->prepare($query);
-        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement = $this->pdo->prepare("INSERT INTO $this->table (`title`) VALUES (:title)");
+        $statement->bindValue('title', $category->getTitle(), \PDO::PARAM_STR);
+
+        if ($statement->execute()) {
+            return $this->pdo->lastInsertId();
+        }
+    }
+
+
+    /**
+     * @param int $id
+     */
+    public function delete(int $id): void
+    {
+        $statement = $this->pdo->prepare("DELETE FROM $this->table WHERE id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
-        // contrairement à fetchAll(), fetch() ne renvoie qu'un seul résultat
-        return $statement->fetch();
+    }
+
+    /**
+     * @param Category $category
+     * @return int
+     */
+    public function update(Category $category):int
+    {
+        $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
+        $statement->bindValue('id', $category->getId(), \PDO::PARAM_INT);
+        $statement->bindValue('title', $category->getTitle(), \PDO::PARAM_STR);
+
+        return $statement->execute();
     }
 }

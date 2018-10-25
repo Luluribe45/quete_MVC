@@ -1,5 +1,5 @@
 {
-    "name": "varloteaux/quete_simple_mvc-quete1",
+    "name": "varloteaux/quete_simple_mvc",
     "description": "quete simple mvc",
     "authors": [
         {
@@ -15,7 +15,8 @@
 
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "": "src/",
+            "App\\": "app/"
         }
     }
 }

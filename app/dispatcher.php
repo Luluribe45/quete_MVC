@@ -1,11 +1,23 @@
 <?php
-// app/dispatcher.php
+/**
+ * This file handle routes dispatching.
+ *
+ * PHP version 7
+ *
+ * @author   WCS <contact@wildcodeschool.fr>
+ *
+ * @link     https://github.com/WildCodeSchool/simple-mvc
+ */
+
+
 require_once __DIR__ . '/routing.php';
 $routesCollection = function (FastRoute\RouteCollector $r) use ($routes) {
     foreach ($routes as $controller => $actions) {
         foreach ($actions as $action) {
             $r->addRoute($action[2], $action[1], [$controller,$action[0]]);
-        } }};
+        }
+    }
+};
 
 $dispatcher = FastRoute\simpleDispatcher($routesCollection);
 
@@ -33,7 +45,7 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $vars = $routeInfo[2];
         [$class, $method] = $routeInfo[1];
-        $class = '\Controller\\' . $class . 'Controller';
+        $class = APP_CONTROLLER_NAMESPACE . $class . APP_CONTROLLER_SUFFIX;
         echo call_user_func_array([new $class(), $method], $vars);
         break;
 }
