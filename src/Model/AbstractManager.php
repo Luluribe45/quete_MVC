@@ -37,4 +37,5 @@ abstract class AbstractManager
         $statement->execute();
         return $statement->fetch();
     }
+
 }

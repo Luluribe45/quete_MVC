@@ -42,7 +42,6 @@ class ItemManager extends AbstractManager
         }
     }
 
-
     /**
      * @param int $id
      */
@@ -53,7 +52,6 @@ class ItemManager extends AbstractManager
         $statement->execute();
     }
 
-
     /**
      * @param Item $item
      * @return int
@@ -63,7 +61,6 @@ class ItemManager extends AbstractManager
         $statement = $this->pdo->prepare("UPDATE $this->table SET `title` = :title WHERE id=:id");
         $statement->bindValue('id', $item->getId(), \PDO::PARAM_INT);
         $statement->bindValue('title', $item->getTitle(), \PDO::PARAM_STR);
-
         return $statement->execute();
     }
 }

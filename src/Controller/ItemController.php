@@ -37,15 +37,17 @@ class ItemController extends AbstractController
 
     public function add()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $itemManager = new ItemManager($this->getPdo());
-            $item = new Item();
-            $item->setTitle($_POST['title']);
-            $id = $itemManager->insert($item);
-            header('Location:/item/' . $id);
+            if (empty($_POST['title'])) {
+                echo "ERREUR : tous les champs n'ont pas ete renseignés.";
+            } else {
+                $itemManager = new ItemManager($this->getPdo());
+                $item = new Item();
+                $item->setTitle($_POST['title']);
+                $id = $itemManager->insert($item);
+                header('Location:/item/' . $id);
+            }
         }
-
         return $this->twig->render('Item/add.html.twig');
     }
 
@@ -55,4 +57,5 @@ class ItemController extends AbstractController
         $itemManager->delete($id);
         header('Location:/');
     }
+
 }
